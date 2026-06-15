@@ -1,0 +1,44 @@
+name: Branch Policy
+
+on:
+  pull_request:
+    branches: [main, dev]
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  validate-branch-policy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate PR base/head branch
+        run: |
+          BASE="${{ github.base_ref }}"
+          HEAD="${{ github.head_ref }}"
+
+          echo "Base branch: $BASE"
+          echo "Head branch: $HEAD"
+
+          if [[ "$BASE" == "dev" ]]; then
+            if [[ "$HEAD" == feat/* || "$HEAD" == fix/* || "$HEAD" == chore/* || "$HEAD" == docs/* || "$HEAD" == refactor/* ]]; then
+              echo "Valid PR to dev"
+              exit 0
+            fi
+
+            echo "Invalid PR to dev."
+            echo "Allowed source branches: feat/*, fix/*, chore/*, docs/*, refactor/*"
+            exit 1
+          fi
+
+          if [[ "$BASE" == "main" ]]; then
+            if [[ "$HEAD" == "dev" || "$HEAD" == hotfix/* ]]; then
+              echo "Valid PR to main"
+              exit 0
+            fi
+
+            echo "Invalid PR to main."
+            echo "Allowed source branches: dev, hotfix/*"
+            exit 1
+          fi
+
+          echo "Invalid base branch. PRs must target dev or main."
+          exit 1
