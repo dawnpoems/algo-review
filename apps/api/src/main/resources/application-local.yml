@@ -1,0 +1,14 @@
+spring:
+  config:
+    import:
+      - optional:file:./infra/.env[.properties]
+      - optional:file:../../infra/.env[.properties]
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/algo_review}
+    username: ${SPRING_DATASOURCE_USERNAME:algo_review}
+    password: ${SPRING_DATASOURCE_PASSWORD:change_me_in_production}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true

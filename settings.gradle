@@ -1,0 +1,5 @@
+rootProject.name = 'algo-review'
+
+include("apps:api")
+
+project(":apps:api").projectDir = file("apps/api")

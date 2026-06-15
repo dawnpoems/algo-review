@@ -1,0 +1,1 @@
+-- Initial schema placeholder. Add domain tables in follow-up migrations.

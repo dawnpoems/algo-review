@@ -1,0 +1,11 @@
+.git
+.gitignore
+.gitattributes
+.gradle/
+build/
+.idea/
+.vscode/
+*.iml
+*.md
+!README.md
+src/test/

@@ -1,0 +1,52 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+*.iws
+*.ipr
+
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# Java
+target/
+*.log
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.eslintcache
+dist/
+out/
+apps/web/dist/
+
+# Runtime config
+.env
+.env.local
+.env.*.local
+!.env.example
+!infra/.env.example
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+postgres_data/
+
+# OS / temp
+Thumbs.db
+*.tmp
+*.temp
+*.bak
+*.orig
