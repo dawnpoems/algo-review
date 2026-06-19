@@ -1,10 +1,10 @@
-# API Contract
+# API 계약
 
-## Create Problem
+## 문제 생성
 
-POST /api/problems
+`POST /api/problems`
 
-Request:
+요청:
 
 ```json
 {
@@ -17,7 +17,7 @@ Request:
 }
 ```
 
-Response:
+응답:
 
 ```json
 {
@@ -31,26 +31,26 @@ Response:
 }
 ```
 
-## List Problems
+## 문제 목록 조회
 
-GET /api/problems
+`GET /api/problems`
 
-## Create Attempt
+## 풀이 시도 생성
 
-POST /api/problems/{problemId}/attempts
+`POST /api/problems/{problemId}/attempts`
 
-Request:
+요청:
 
 ```json
 {
   "result": "FAILED",
   "elapsedMinutes": 40,
-  "mistakeReason": "Could not define DP state",
-  "memo": "Need to review LIS transition"
+  "mistakeReason": "DP 상태를 정의하지 못함",
+  "memo": "LIS 점화식 복습 필요"
 }
 ```
 
-Response:
+응답:
 
 ```json
 {
@@ -61,11 +61,11 @@ Response:
 }
 ```
 
-## Today Review Queue
+## 오늘의 복습 큐
 
-GET /api/reviews/today
+`GET /api/reviews/today`
 
-Response:
+응답:
 
 ```json
 [
@@ -80,11 +80,11 @@ Response:
 ]
 ```
 
-## Tag Weakness Stats
+## 태그별 취약도 통계
 
-GET /api/stats/tags
+`GET /api/stats/tags`
 
-Response:
+응답:
 
 ```json
 [

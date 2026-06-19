@@ -1,34 +1,36 @@
-# AlgoReview Product Spec
+# AlgoReview 제품 명세
 
-## Purpose
+## 목적
 
-AlgoReview is a personal coding-test study tracker.
+AlgoReview는 개인 코딩 테스트 학습 이력을 관리하는 트래커다.
 
-The user solves problems on external platforms such as Baekjoon, Programmers, and LeetCode. AlgoReview does not judge code. It records problem links, attempts, mistakes, review schedules, and weak tags.
+사용자는 Baekjoon, Programmers, LeetCode 같은 외부 플랫폼에서 문제를 풀거나 시도한다.
+AlgoReview는 코드를 채점하지 않는다.
+문제 링크, 풀이 시도, 실수 원인, 복습 일정, 취약 태그를 기록한다.
 
-## MVP Goals
+## MVP 목표
 
-1. Register coding-test problems.
-2. Record solving attempts.
-3. Record mistake reasons.
-4. Calculate next review date.
-5. Show today's review queue.
-6. Show weak tags based on attempt history.
+1. 코딩 테스트 문제를 등록한다.
+2. 풀이 시도를 기록한다.
+3. 실수 원인을 기록한다.
+4. 다음 복습 날짜를 계산한다.
+5. 오늘의 복습 큐를 보여준다.
+6. 풀이 이력을 기반으로 취약 태그를 보여준다.
 
-## Core User Flow
+## 핵심 사용자 흐름
 
-1. User solves or tries a problem on an external platform.
-2. User registers the problem in AlgoReview.
-3. User records the attempt result.
-4. System calculates next review date.
-5. User opens the dashboard and sees what to review today.
+1. 사용자가 외부 플랫폼에서 문제를 풀거나 시도한다.
+2. 사용자가 AlgoReview에 문제를 등록한다.
+3. 사용자가 풀이 시도 결과를 기록한다.
+4. 시스템이 다음 복습 날짜를 계산한다.
+5. 사용자가 대시보드를 열고 오늘 복습할 문제를 확인한다.
 
-## MVP Non-goals
+## MVP 비목표
 
-- Online code execution
-- Automated judging
-- Problem crawling
-- AI solution generation
-- Ranking
-- Social features
-- Complex authentication
+- 온라인 코드 실행
+- 자동 채점
+- 문제 크롤링
+- AI 풀이 생성
+- 랭킹
+- 소셜 기능
+- 복잡한 인증

@@ -1,33 +1,85 @@
 # AGENTS.md
 
-## Branch strategy
+## 브랜치 전략
 
-This repository uses a simplified Git Flow.
+이 저장소는 단순화한 Git Flow를 사용합니다.
 
-- `main`: production branch. Code merged here is considered releasable and may be deployed to the live server.
-- `dev`: integration branch for the next release.
-- `feat/*`: feature branches. Must open pull requests into `dev`.
-- `fix/*`: development bug fix branches. Must open pull requests into `dev`.
-- `chore/*`: maintenance branches. Must open pull requests into `dev`.
-- `docs/*`: documentation branches. Must open pull requests into `dev`.
-- `refactor/*`: refactoring branches. Must open pull requests into `dev`.
-- `hotfix/*`: urgent production fix branches. Must branch from `main` and open pull requests into `main`.
+- `main`: 프로덕션 브랜치입니다. 여기에 병합된 코드는 배포 가능한 상태로 간주하며, 라이브 서버에 배포될 수 있습니다.
+- `dev`: 다음 릴리스를 위한 통합 브랜치입니다.
+- `feat/*`: 기능 개발 브랜치입니다. 반드시 `dev`로 풀 리퀘스트를 열어야 합니다.
+- `fix/*`: 개발 중 버그 수정 브랜치입니다. 반드시 `dev`로 풀 리퀘스트를 열어야 합니다.
+- `chore/*`: 유지보수 작업 브랜치입니다. 반드시 `dev`로 풀 리퀘스트를 열어야 합니다.
+- `docs/*`: 문서 작업 브랜치입니다. 반드시 `dev`로 풀 리퀘스트를 열어야 합니다.
+- `refactor/*`: 리팩터링 브랜치입니다. 반드시 `dev`로 풀 리퀘스트를 열어야 합니다.
+- `hotfix/*`: 긴급 프로덕션 수정 브랜치입니다. 반드시 `main`에서 분기하고 `main`으로 풀 리퀘스트를 열어야 합니다.
 
-## Pull request rules
+## 풀 리퀘스트 규칙
 
-- Never push directly to `main`.
-- Never push directly to `dev`.
-- For normal implementation tasks, start from `dev`.
-- For normal implementation tasks, open a draft PR against `dev`.
-- Only release PRs from `dev` or urgent `hotfix/*` PRs may target `main`.
-- After a `hotfix/*` PR is merged into `main`, ensure the same fix is reflected in `dev`.
+- `main`에 직접 push하지 않습니다.
+- `dev`에 직접 push하지 않습니다.
+- 일반 구현 작업은 `dev`에서 시작합니다.
+- 일반 구현 작업은 `dev`를 대상으로 draft PR을 엽니다.
+- `dev`에서 올리는 릴리스 PR 또는 긴급 `hotfix/*` PR만 `main`을 대상으로 할 수 있습니다.
+- `hotfix/*` PR이 `main`에 병합된 뒤에는 같은 수정이 `dev`에도 반영되어야 합니다.
 
-## Codex working rules
+## Codex 작업 규칙
 
-- Unless explicitly instructed otherwise, assume the target branch is `dev`.
-- Create small, reviewable pull requests.
-- Do not change unrelated files.
-- Do not change API contracts unless the task explicitly requires it.
-- Run available tests/builds before completing a task.
-- Summarize changed files, commands run, test results, assumptions, and remaining risks.
-- Open a draft PR when the task is complete.
+- 별도 지시가 없으면 항상 `dev`에서 새 브랜치를 딴다.
+- 직접 `main`이나 `dev`에 push하지 않는다.
+- 일반 작업은 draft PR을 `dev`로 올린다.
+- PR은 작고 리뷰 가능해야 한다.
+- 관련 없는 파일을 수정하지 않는다.
+- 이슈에서 명시하지 않은 API 계약 변경은 하지 않는다.
+- 도메인 로직은 테스트를 추가하거나 수정한다.
+- 완료 전 가능한 테스트/빌드를 실행한다.
+- 단, 문서만 수정한 경우 별도 테스트/빌드 검증은 생략한다.
+- 완료 후 변경 파일, 실행 명령, 테스트 결과, 가정, 남은 리스크를 요약한다.
+- 대화 중 전체 프로젝트에 계속 적용될 만한 지침이 나오면 `AGENTS.md` 또는 `docs/` 문서에 반영한다.
+
+## TDD 작업 원칙
+
+- 도메인 로직은 실패하는 테스트를 먼저 작성한다.
+- 테스트가 요구하는 최소 구현으로 통과시킨 뒤 리팩터링한다.
+- 테스트 없이 동작 범위를 넓히지 않는다.
+- 테스트 이름과 fixture는 도메인 규칙을 설명하도록 작성한다.
+
+## 명확화 정책
+
+Codex는 제품 또는 도메인 동작이 애매할 때 조용히 임의 결정하지 않는다.
+
+요구사항이 애매한 작업은 구현 전에 멈추고 명확화 질문을 먼저 한다.
+
+질문할 때는 다음 내용을 함께 제시한다.
+
+- Codex가 생각하는 가능한 안
+- 각 안의 트레이드오프
+- 추천안
+- 추천 이유
+
+애매한 요구사항의 예시는 다음과 같다.
+
+- 새로운 테이블이 필요한지 불명확한 경우
+- API request/response 필드명이 문서와 다른 경우
+- enum 값이나 상태 전이 규칙이 정의되지 않은 경우
+- 복습 주기 계산 기준이 여러 방식으로 해석될 수 있는 경우
+- MVP 범위에 포함되는지 애매한 기능이 있는 경우
+- 기존 문서와 이슈 내용이 충돌하는 경우
+
+허용되는 가정은 다음으로 제한한다.
+
+- 컴파일을 위한 최소 skeleton class/interface 생성
+- 테스트를 위한 fixture/helper 생성
+- 문서에 이미 명시된 규칙을 코드로 옮기는 수준의 결정
+
+가정을 한 경우 다음 규칙을 지킨다.
+
+- `docs/assumptions.md` 또는 PR 설명에 기록한다.
+- 가정은 최소로 유지한다.
+- 가정을 근거로 작업 범위를 넓히지 않는다.
+
+작업이 막힌 경우 다음 규칙을 지킨다.
+
+- 추측성 구현을 계속하지 않는다.
+- 명확한 질문 목록을 남긴다.
+- 어떤 파일이나 결정이 막혀 있는지 설명한다.
+- 리뷰할 만한 부분 작업이 있을 때만 draft PR을 연다.

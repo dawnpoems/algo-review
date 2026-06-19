@@ -1,39 +1,39 @@
-# Domain Rules
+# 도메인 규칙
 
-## Problem
+## 문제
 
-A problem has:
+문제는 다음 정보를 가진다.
 
-- platform
-- external problem id
-- title
-- url
-- difficulty
-- tags
+- 플랫폼
+- 외부 문제 ID
+- 제목
+- URL
+- 난이도
+- 태그
 
-## Attempt Result
+## 풀이 시도 결과
 
-Allowed attempt results:
+허용되는 풀이 시도 결과는 다음과 같다.
 
-- SOLVED_WITHOUT_HINT
-- SOLVED_WITH_HINT
-- FAILED
-- RETRY_NEEDED
+- `SOLVED_WITHOUT_HINT`
+- `SOLVED_WITH_HINT`
+- `FAILED`
+- `RETRY_NEEDED`
 
-## Review Scheduling
+## 복습 일정
 
-Initial simple rules:
+초기 단순 규칙은 다음과 같다.
 
-- FAILED: review after 1 day
-- SOLVED_WITH_HINT: review after 2 days
-- RETRY_NEEDED: review after 3 days
-- SOLVED_WITHOUT_HINT: review after 7 days
+- `FAILED`: 1일 뒤 복습
+- `SOLVED_WITH_HINT`: 2일 뒤 복습
+- `RETRY_NEEDED`: 3일 뒤 복습
+- `SOLVED_WITHOUT_HINT`: 7일 뒤 복습
 
-If a problem is reviewed successfully multiple times, the review interval may increase later.
+문제를 여러 번 성공적으로 복습한 경우, 이후 복습 간격은 늘어날 수 있다.
 
-## Today Review Queue
+## 오늘의 복습 큐
 
-A problem should appear in today's review queue when:
+다음 조건을 모두 만족하면 문제는 오늘의 복습 큐에 나타나야 한다.
 
-- nextReviewAt is today or earlier
-- problem is not marked as mastered
+- `nextReviewAt`이 오늘이거나 오늘보다 이전이다.
+- 문제가 `mastered`로 표시되어 있지 않다.
